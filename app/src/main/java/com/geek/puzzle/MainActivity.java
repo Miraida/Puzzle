@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> texts;
     TextView timer;
     ImageView image;
-
+    CountDownTimer countDownTimer;
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9;
 
     @Override
@@ -36,9 +36,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setTimer() {
-        new CountDownTimer(60000, 1000) {
+        countDownTimer =  new CountDownTimer(60000, 1000) {
             public void onTick(long millisUntilFinished) {
                 timer.setText(String.valueOf(millisUntilFinished / 1000));
+
             }
 
             public void onFinish() {
@@ -204,7 +205,8 @@ public class MainActivity extends AppCompatActivity {
                 button7.getText().equals("7") &&
                 button8.getText().equals("8") &&
                 button9.getText().equals(" ")) {
-         timer.setVisibility(View.GONE);
+         timer.setText("Молодец!");
+         cancelM();
          loadImage("https://www.icegif.com/wp-content/uploads/naruto-icegif-34.gif");
         }
     }
@@ -246,5 +248,7 @@ public class MainActivity extends AppCompatActivity {
     private void mixList() {
         Collections.shuffle(texts);
     }
-
+private void cancelM(){
+   countDownTimer.cancel();
+}
 }
